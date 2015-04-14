@@ -1,0 +1,9 @@
+triple_triade_homepage:
+    path:     /
+    defaults: { _controller: TripleTriadeBundle:TripleTriade:index }
+
+triple_triade_view:
+    path:      /card/{id}
+    defaults:  { _controller: TripleTriadeBundle:TripleTriade:view }
+    requirements:
+        id: \d+

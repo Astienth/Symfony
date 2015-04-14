@@ -1,0 +1,9 @@
+triple_triade:
+    resource: "@TripleTriadeBundle/Resources/config/routing.yml"
+    prefix:   /TripleTriade
+
+oc_platform:
+    resource: "@OCPlatformBundle/Resources/config/routing.yml"
+    prefix:   /platform
+
+
