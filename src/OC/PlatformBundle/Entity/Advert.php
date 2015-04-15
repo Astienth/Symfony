@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Advert
 {
+    
     /**
      * @var integer
      *
@@ -48,6 +49,11 @@ class Advert
      * @ORM\Column(name="content", type="text")
      */
     private $content;
+    
+    /**
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published;
 
     
     public function __construct()
@@ -161,5 +167,28 @@ class Advert
     {
         return $this->content;
     }
-}
 
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return Advert
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+}
