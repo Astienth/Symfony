@@ -50,14 +50,10 @@ class __TwigTemplate_f67dc310b9a3aa7f043ce33cff44da25f2460a76994a53581df3182f621
         echo "
   <h2>Supprimer une annonce</h2>
 
-  <a href=\"";
-        // line 13
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("oc_platform_view", array("id" => $this->getAttribute((isset($context["id"]) ? $context["id"] : $this->getContext($context, "id")), "id", array()))), "html", null, true);
-        echo "\">Supprimer l'annonce</a>
 
   <p>
     <a href=\"";
-        // line 16
+        // line 15
         echo $this->env->getExtension('routing')->getPath("oc_platform_home", array("page" => 1));
         echo "\" class=\"btn btn-default\">
       <i class=\"glyphicon glyphicon-chevron-left\"></i>
@@ -80,6 +76,6 @@ class __TwigTemplate_f67dc310b9a3aa7f043ce33cff44da25f2460a76994a53581df3182f621
 
     public function getDebugInfo()
     {
-        return array (  61 => 16,  55 => 13,  50 => 10,  47 => 9,  40 => 6,  37 => 5,  11 => 3,);
+        return array (  57 => 15,  50 => 10,  47 => 9,  40 => 6,  37 => 5,  11 => 3,);
     }
 }

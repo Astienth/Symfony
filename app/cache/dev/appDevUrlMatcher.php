@@ -127,23 +127,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/TripleTriade')) {
-            // triple_triade_homepage
-            if (rtrim($pathinfo, '/') === '/TripleTriade') {
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'triple_triade_homepage');
-                }
-
-                return array (  '_controller' => 'TripleTriadeBundle\\Controller\\TripleTriadeController::indexAction',  '_route' => 'triple_triade_homepage',);
-            }
-
-            // triple_triade_view
-            if (0 === strpos($pathinfo, '/TripleTriade/card') && preg_match('#^/TripleTriade/card/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'triple_triade_view')), array (  '_controller' => 'TripleTriadeBundle\\Controller\\TripleTriadeController::viewAction',));
-            }
-
-        }
-
         if (0 === strpos($pathinfo, '/platform')) {
             // bye_world_route
             if ($pathinfo === '/platform/bye-world') {

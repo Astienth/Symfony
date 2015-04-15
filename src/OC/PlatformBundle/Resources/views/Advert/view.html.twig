@@ -13,7 +13,33 @@
 
   <div class="well">
     {{ advert.content }}
+  
+  {# On vérifie qu'une image soit bien associée à l'annonce #}
+{% if advert.image is not null %}
+  <img src="{{ advert.image.url }}" alt="{{ advert.image.alt }}">
+{% endif %}
   </div>
+  
+{% for App in listApplications %}
+     <div class="well">
+          <p> {{ App.author }} </p>
+          <p> {{ App.content }} </p>
+          <p> {{ App.date|date('d/m/Y') }} </p>
+  </div>
+{% else %}
+      <div class="well">
+          <p>Pas (encore !) de candidatures !</p>
+      </div>
+{% endfor %}
+
+{% if not advert.categories.empty %}
+  <p>
+    Cette annonce est parue dans les catégories suivantes :
+    {% for category in advert.categories %}
+      {{ category.name }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  </p>
+{% endif %}
 
   <p>
     <a href="{{ path('oc_platform_home') }}" class="btn btn-default">
