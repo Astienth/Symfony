@@ -1,1 +1,1 @@
-GaymerZ project
+Symfony2 project

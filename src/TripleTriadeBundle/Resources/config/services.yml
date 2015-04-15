@@ -1,4 +1,0 @@
-services:
-#    triple_triade.example:
-#        class: TripleTriadeBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]

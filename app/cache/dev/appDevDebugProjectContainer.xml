@@ -17,7 +17,6 @@
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="OCPlatformBundle">OC\PlatformBundle\OCPlatformBundle</parameter>
-      <parameter key="TripleTriadeBundle">TripleTriadeBundle\TripleTriadeBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -2512,7 +2511,9 @@
       <argument type="service">
         <service class="Doctrine\ORM\Configuration" public="false">
           <call method="setEntityNamespaces">
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument key="OCPlatformBundle">OC\PlatformBundle\Entity</argument>
+            </argument>
           </call>
           <call method="setMetadataCacheImpl">
             <argument type="service" id="doctrine_cache.providers.doctrine.orm.default_metadata_cache"/>
@@ -2525,7 +2526,19 @@
           </call>
           <call method="setMetadataDriverImpl">
             <argument type="service">
-              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false"/>
+              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>C:\wamp\www\Symfony\src\OC\PlatformBundle\Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>OC\PlatformBundle\Entity</argument>
+                </call>
+              </service>
             </argument>
           </call>
           <call method="setProxyDir">
@@ -2604,6 +2617,11 @@
       <argument type="service" id="security.role_hierarchy" on-invalid="null"/>
       <argument type="service" id="security.token_storage" on-invalid="null"/>
       <argument type="service" id="security.authorization_checker" on-invalid="null"/>
+    </service>
+    <service id="oc_platform.antispam" class="OC\PlatformBundle\Antispam\OCAntispam">
+      <argument type="service" id="swiftmailer.mailer.default"/>
+      <argument>en</argument>
+      <argument>50</argument>
     </service>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig"/>
@@ -2964,10 +2982,6 @@
       <call method="addPath">
         <argument>C:\wamp\www\Symfony\src\OC\PlatformBundle/Resources/views</argument>
         <argument>OCPlatform</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\wamp\www\Symfony\src\TripleTriadeBundle/Resources/views</argument>
-        <argument>TripleTriade</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp\www\Symfony\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>
